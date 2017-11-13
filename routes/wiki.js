@@ -4,13 +4,14 @@ const router = express.Router();
 
 
 router.get('/', (req, res, next) => {
-	res.send('get something');
+  console.log("here");
+	res.redirect('/');
 })
 
 router.post('/', (req, res, next) => {
 	res.send('post something');
 })
 router.get('/add', (req, res, next) => {
-	res.send('get something');
+  res.render('addpage');
 })
 module.exports = router;

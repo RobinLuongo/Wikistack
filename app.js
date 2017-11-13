@@ -28,6 +28,13 @@ models.User.sync({force: true})
 })
 .catch((err) => console.error(err));
 
+app.use('/', (req, res, next) => {
+  if (req.method === 'GET' && req.path === '/') {
+    res.send('welcome to the homepage');
+  }
+  next();
+})
+
 // app.use(express.static(path.join(__dirname, '/public')));
 
 app.use('/', routes);
