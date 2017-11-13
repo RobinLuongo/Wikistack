@@ -19,7 +19,7 @@ app.use(bodyParser.json()); // would be for AJAX requests
 
 models.User.sync({force: true})
 .then(function() {
-	return models.Page.sync({})
+	return models.Page.sync()
 })
 .then(function() {
 	app.listen(1337, function() {
@@ -28,6 +28,6 @@ models.User.sync({force: true})
 })
 .catch((err) => console.error(err));
 
-app.use(express.static(path.join(__dirname, '/public')));
+// app.use(express.static(path.join(__dirname, '/public')));
 
 app.use('/', routes);
