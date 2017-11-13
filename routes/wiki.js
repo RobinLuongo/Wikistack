@@ -23,14 +23,16 @@ router.get('/add', (req, res, next) => {
 })
 
 router.get('/:article', (req, res, next) => {
-  let toSend = Page.findAll({
+  let toSend = Page.findOne({
     where: {
       urlTitle: req.params.article
     }
   }).then((page) => {
-    res.json(page)
-  })
-  console.log("-----------" + toSend + "--------------");
+    res.render('wikipage', {
+      title: page.title,
+      content: page.content
+    })
+  }).catch((err) => console.error(err));
   //res.json(toSend);
 })
 
