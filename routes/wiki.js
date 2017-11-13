@@ -22,4 +22,16 @@ router.get('/add', (req, res, next) => {
   res.render('addpage');
 })
 
+router.get('/:article', (req, res, next) => {
+  let toSend = Page.findAll({
+    where: {
+      urlTitle: req.params.article
+    }
+  }).then((page) => {
+    res.json(page)
+  })
+  console.log("-----------" + toSend + "--------------");
+  //res.json(toSend);
+})
+
 module.exports = router;
