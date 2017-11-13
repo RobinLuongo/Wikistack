@@ -14,8 +14,8 @@ router.post('/', (req, res, next) => {
     title: req.body.title,
     content: req.body.content,
   });
-	page.save();
-	res.send(req.body);
+	page.save().then(function (savedPage) {
+	res.redirect(savedPage.getURL)});
 })
 
 router.get('/add', (req, res, next) => {
@@ -23,11 +23,12 @@ router.get('/add', (req, res, next) => {
 })
 
 router.get('/:article', (req, res, next) => {
-  let toSend = Page.findOne({
+  Page.findOne({
     where: {
       urlTitle: req.params.article
     }
   }).then((page) => {
+  	// console.log(page);
     res.render('wikipage', {
       title: page.title,
       content: page.content

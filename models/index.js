@@ -14,13 +14,11 @@ const Page = db.define('PAGE', {
 			page.urlTitle = page.title.replace(/\s+/g, '_').replace(/\W/g, '');
 		else
 			page.urlTitle = Math.random().toString(36).substring(2, 7);
-		}
-	}
-	},
-		{getterMethods: {getURL() {
+		}},
+	getterMethods: {getURL() {
 		return '/wiki/' + this.urlTitle;
-	}}}
-)
+	}}
+})
 const User = db.define('USER', {
 	name: {type: Sequelize.STRING, allowNull: false, notEmpty: true},
 	email: {type: Sequelize.STRING, allowNull: false, notEmpty: true, isEmail: true}
